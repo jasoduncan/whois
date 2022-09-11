@@ -140,11 +140,11 @@ func IsNum(s string) bool {
 	return err == nil
 }
 func requestHandler(w http.ResponseWriter, r *http.Request) {
-	httporigin := r.Header.Get("origin")
-	if !strings.HasPrefix(httporigin, whois_config.Front) && !strings.Contains(httporigin, "127.0.0.1:"+whois_config.Port) {
-		w.WriteHeader(http.StatusForbidden)
-		return
-	}
+	/*	httporigin := r.Header.Get("origin")
+		if !strings.HasPrefix(httporigin, whois_config.Front) && !strings.Contains(httporigin, "127.0.0.1:"+whois_config.Port) {
+			w.WriteHeader(http.StatusForbidden)
+			return
+		}*/
 	r.ParseForm()
 	xForwardedFor := r.Header.Get("X-Forwarded-For")
 	ip := strings.TrimSpace(strings.Split(xForwardedFor, ",")[0])
@@ -226,7 +226,7 @@ func requestHandler(w http.ResponseWriter, r *http.Request) {
 	} else {
 		returnhtml = "err get domain.ex:zhufan.net"
 	}
-	w.Header().Set("content-type", "text/html; charset=utf-8")
+	w.Header().Set("content-type", "text/json")
 	w.Header().Set("X-Powered-By", "https://33.al")
 	returnhtml = strings.ReplaceAll(returnhtml, "\n", "<br>")
 
