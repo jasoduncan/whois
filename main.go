@@ -228,7 +228,7 @@ func requestHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	w.Header().Set("content-type", "text/json")
 	w.Header().Set("X-Powered-By", "https://33.al")
-	returnhtml = strings.ReplaceAll(returnhtml, "\n", "<br>")
+	//returnhtml = strings.ReplaceAll(returnhtml, "\n", "<br>")
 
 	for _, ip := range whois_config.Ips {
 		returnhtml = strings.ReplaceAll(returnhtml, ip, "8.8.8.8")
